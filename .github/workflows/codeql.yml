@@ -28,10 +28,10 @@ jobs:
         languages: csharp
 
     - name: Restore dependencies
-      run: dotnet restore ./AceJobAgency/AceJobAgency.sln
+      run: dotnet restore **/*.sln
 
     - name: Build
-      run: dotnet build ./AceJobAgency/AceJobAgency.sln --no-restore
+      run: dotnet build **/*.sln --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
