@@ -28,10 +28,14 @@ jobs:
         languages: csharp
 
     - name: Restore dependencies
-      run: dotnet restore **/*.sln
+      run: |
+        SOLUTION=$(find . -name "*.sln" | head -n 1)
+        dotnet restore "$SOLUTION"
 
     - name: Build
-      run: dotnet build **/*.sln --no-restore
+      run: |
+        SOLUTION=$(find . -name "*.sln" | head -n 1)
+        dotnet build "$SOLUTION" --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
