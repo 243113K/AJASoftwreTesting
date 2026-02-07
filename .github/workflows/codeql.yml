@@ -27,12 +27,11 @@ jobs:
       with:
         languages: csharp
 
-    # Replace Autobuild with these two manual steps
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./AceJobAgency/AceJobAgency.sln
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build ./AceJobAgency/AceJobAgency.sln --no-restore
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
