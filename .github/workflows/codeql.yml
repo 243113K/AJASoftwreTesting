@@ -27,17 +27,11 @@ jobs:
       with:
         languages: csharp
 
-    - name: Find and Save Solution Path
-      run: |
-        SLN_PATH=$(find . -name "*.sln" | head -n 1)
-        echo "SLN_FILE=$SLN_PATH" >> $GITHUB_ENV
-
     - name: Restore dependencies
-      # Use the env context correctly with double curly braces
-      run: dotnet restore "${{ env.SLN_FILE }}"
+      run: dotnet restore AceJobAgency.sln
 
     - name: Build
-      run: dotnet build "${{ env.SLN_FILE }}" --no-restore
-
+      run: dotnet build AceJobAgency.sln --no-restore
+      
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v3
